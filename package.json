@@ -1,0 +1,17 @@
+{
+  "name": "hw3-pokedex",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@esinx/eslint-config": "^2.2.1",
+    "eslint": "^9.39.2",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.1"
+  }
+}
