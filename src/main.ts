@@ -3,7 +3,7 @@ import { fetchData } from "./api";
 import type { AllPokemonList } from "./pokemon-types";
 import type { PokemonDetail } from "./pokemon-types";
 
-let page_size = 20
+const page_size = 20
 let current_page = 1
 let pokemonList: AllPokemonList = { results : []};
 const detailCache = new Map<string, PokemonDetail>();
@@ -31,7 +31,7 @@ async function getDescription(pokemonList: AllPokemonList): Promise<PokemonDetai
       if (detailCache.has(pokemon.url)) {
         return detailCache.get(pokemon.url)!
       } else {
-        let res = await fetchData<PokemonDetail>(pokemon.url)
+        const res = await fetchData<PokemonDetail>(pokemon.url)
         detailCache.set(pokemon.url, res);
         return res;
       }
@@ -86,13 +86,13 @@ function renderPokemon(details: PokemonDetail[]) {
 
 
 async function loadPage() {
-  let offset = (current_page - 1) * page_size
+  const offset = (current_page - 1) * page_size
   container.innerHTML = "<p>Loading...</p>";
   pagenum.textContent = `${current_page}`;
 
   try {
     pokemonList = await fetchData<AllPokemonList>(`https://pokeapi.co/api/v2/pokemon?limit=${page_size}&offset=${offset}`);
-    let description = await getDescription(pokemonList);
+    const description = await getDescription(pokemonList);
     console.log(description);
     renderPokemon(description);
   } catch (error) {
